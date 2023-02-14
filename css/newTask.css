@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #30d5c8;
+  color: white;
+  font-family: monospace;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  height: 100vh;
+}
+
+header {
+  font-size: 40px;
+  display: grid;
+  grid-area: 1/1/2/10;
+  place-items: center;
+  background-color: #6050dc;
+  color: white;
+}
+
+a {
+  color: #6050dc;
+  text-decoration: none;
+}
+
+button {
+  background-color: #e6ff08;
+  font-family: monospace;
+  font-size: 30px;
+  margin: 70px 10px;
+  border-radius: 12px;
+  border: outset;
+}
+
+button:nth-of-type(1) {
+  grid-area: 2/3/3/4;
+}
+
+button:nth-of-type(2) {
+  grid-area: 2/5/3/6;
+}
+
+button:nth-of-type(3) {
+  grid-area: 2/7/3/8;
+}
+
+section {
+  grid-area: 4/4/9/7;
+  border: 17px double #6050dc;
+  border-radius: 12px;
+  text-align: center;
+  overflow-y: scroll;
+  background-color: #e6ff08;
+  padding: white 20px;
+}
+
+h2 {
+  font-size: 60px;
+  color: #6050dc;
+  font-style: underline;
+  text-decoration: underline;
+}
+
+h3 {
+  font-family: monospace;
+  font-size: 40px;
+  color: #6050dc;
+  margin: 35px;
+  border: 8px double #cc3333;
+}
+
+li {
+  font-family: monospace;
+  font-size: 30px;
+  color: #6050dc;
+}
+
+/* Darker background-color on hover
+ol li:hover {
+  background: #ddd;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+/* ol li:nth-child(odd) {
+  background: #f9f9f9;
+} */

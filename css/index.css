@@ -1,0 +1,46 @@
+body {
+  background-color: #30d5c8;
+  color: white;
+  font-family: monospace;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  height: 100vh;
+}
+
+header {
+  font-size: 60px;
+  grid-area: 3/1/4/10;
+  text-align: center;
+  background-color: #6050dc;
+  color: white;
+  border-radius: 12px;
+  border: solid;
+  border-color: #cc3333;
+}
+
+button:nth-of-type(1) {
+  grid-area: 4/3/5/4;
+}
+
+button:nth-of-type(2) {
+  grid-area: 4/5/5/6;
+}
+
+button:nth-of-type(3) {
+  grid-area: 4/7/5/8;
+}
+
+button {
+  font-size: 30px;
+  margin: 70px 10px;
+  border-radius: 12px;
+  background-color: #e6ff08;
+  border: outset;
+}
+
+a {
+  color: #6050dc;
+  text-decoration: none;
+}
+/* #cc3333 */
