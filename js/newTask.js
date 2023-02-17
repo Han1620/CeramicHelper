@@ -11,7 +11,7 @@ Task.allTasks = [];
 const strCylinder = [
   {
     desc: "Press thumb into the center of the clay. Check the thickness of the base using a dry pin tool.",
-    completed: false,
+    completed: true,
   },
   {
     desc: "Pull outwards, from the center towards yourself.",
@@ -46,9 +46,6 @@ const strCylinder = [
     completed: false,
   },
 ];
-
-const firstTask = new Task("Throwing a straight-edged cylinder", strCylinder);
-console.log(firstTask);
 
 const basicTurning = [
   {
@@ -100,37 +97,116 @@ const basicTurning = [
     completed: false,
   },
 ];
+if (localStorage.getItem("taskData") === null) {
+  // for (let i = 0; i < Task.allTasks.length; i++) {
+  //   new Task(Task[i].name, Task[i].steps);
+  // }
+  new Task("Throwing a straight-edged cylinder", strCylinder);
+  new Task("Turning the base of your piece", basicTurning);
+} else {
+  const taskData = JSON.parse(localStorage.getItem("taskData"));
 
-const secondTask = new Task("Turning the base of your piece", basicTurning);
-console.log(secondTask);
+  for (let i = 0; i < taskData.length; i++) {
+    new Task(taskData[i].name, taskData[i].steps);
+  }
+}
 
 function renderTask() {
   console.log("help");
   const taskElem = document.getElementById("tasks");
 
-  for (i = 0; i < Task.allTasks.length; i++) {
+  // loop through all tasks using forEach
+  Task.allTasks.forEach(function (theTask) {
     const h3Elem = document.createElement("h3");
-    h3Elem.textContent = Task.allTasks[i].name;
+    h3Elem.textContent = theTask.name;
     taskElem.appendChild(h3Elem);
 
     const list = document.createElement("ul");
     taskElem.appendChild(list);
-    // another for loop, that loops through Task.allTasks[i].steps and makes an li for each item in the array, and appends it to the ul you created before
-    for (i = 0; i < Task.allTasks.length; i++) {
+    // loop through all steps within the task forEach
+    theTask.steps.forEach(function (theStep) {
       const listItem = document.createElement("li");
-      listItem.textContent = Task.allTasks[i].steps;
+      listItem.textContent = theStep.desc;
+
+      if (theStep.completed == true) {
+        listItem.classList.add("done");
+      }
+
+      listItem.addEventListener("click", function (event) {
+        event.target.classList.toggle("done");
+
+        theStep.completed = !theStep.completed;
+
+        localStorage.setItem("taskData", JSON.stringify(Task.allTasks));
+      });
+
       list.appendChild(listItem);
-      //   // Task.allTasks[i].steps = document.createElement("li");
-      //   // list.appendChild(li);
-      // }
-    }
-  }
+    });
+  });
 }
 
 renderTask();
 
+// function renderTask() {
+//   console.log("help");
+//   const taskElem = document.getElementById("tasks");
+
+//   for (i = 0; i < Task.allTasks.length; i++) {
+//     const h3Elem = document.createElement("h3");
+//     h3Elem.textContent = Task.allTasks[i].name;
+//     taskElem.appendChild(h3Elem);
+
+//     const list = document.createElement("ul");
+//     taskElem.appendChild(list);
+
+//     for (k = 0; k < Task.allTasks[i].steps.length; k++) {
+//       const listItem = document.createElement("li");
+//       listItem.textContent = Task.allTasks[i].steps[k].desc;
+
+//       if (Task.allTasks[i].steps[k].completed == true) {
+//         listItem.classList.add("done");
+//       }
+
+//       let test = i;
+//       console.log(k);
+
+//       listItem.addEventListener("click", function (event, i) {
+//         event.target.classList.toggle("done");
+//         console.log(i);
+
+//         localStorage.setItem("taskData", JSON.stringify(Task.allTasks));
+//       });
+
+//       list.appendChild(listItem);
+//     }
+//   }
+// }
+
+// renderTask();
+
+// tim's notes:// update completed on the clicked items
+// update localStorage with the latest version of the object
+
+// listItem.addEventListener("click", function (event) {
+//   event.target.classList.toggle("done");
+
+//   // Task.allTasks[i].steps[k].completed = !Task.allTasks[i].steps[k].completed;
+//   localStorage.setItem("taskData", JSON.stringify(Task.allTasks));
+//   //
+// });
+
+// function handleClick (
+//// writew a for loop that goes round the Tasks.allTasks and for each item, runs thsoe if statements
+//   if (listItem[i].event == "true") {
+//     document.Task.steps[i].completed == "false";
+//   }
+//   if (listItem[i].event == "false") {
+//     document.Task.steps[i].completed == "true";
+//   }
+// )
+
 // this was my first attempt:
-//  document.Task.steps.addEventListener('keypress', function(event)) {
+// Task.alltasks[i].steps.addEventListener('click', function(event)) {
 //   for (i = 0; i < Task.allTasks.length; i++) {
 //     if (document.Task.steps[i].event == 'true');
 //     document.Task.steps[i].completed == 'true';
